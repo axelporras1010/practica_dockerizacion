@@ -1,0 +1,15 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.auth {
+    @include m.contenedor-sm;
+
+    &__heading{
+        
+    }
+
+    &__texto{
+        text-align: center;
+    }
+}
+
