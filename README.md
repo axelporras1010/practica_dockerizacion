@@ -5,7 +5,7 @@ Todas las dependencias se encuentran dentro del docker.compose.yaml para poder r
 
 Pasos a seguir para poder probar la aplicación web:
 
-1 - Usar este repositorio publico de git y hacer un pull al mismo para obtener todos los archivos y sus configuraciones: 
+## 1 - Usar este repositorio publico de git y hacer un pull al mismo para obtener todos los archivos y sus configuraciones: 
 
 git init 
 
@@ -17,18 +17,18 @@ git pull origin main
 
 ![Pull ejemplo](imagenes_readme/git_first.png)
 
-2 - Entrar a la carpeta de docker para comenzar el proceso de levantamiento de los contendores y consecuentemente hacer el levantamiento con: docker-compose up -d --build
+## 2 - Entrar a la carpeta de docker para comenzar el proceso de levantamiento de los contendores y consecuentemente hacer el levantamiento con: docker-compose up -d --build
 cd docker
 docker-compose up -d --build
 
 ![Docker up](imagenes_readme/docker_up.png)
 
-3 - Revisar los contenedores 
+## 3 - Revisar los contenedores 
 docker ps
 
 ![Revisar contenedores](imagenes_readme/revisar_contendores.png)
 
-4- Ahora vamos a ir a PHPMyAdmin para importar la base de datos. El archivo SQL del cual se puede importar se encuentra dentro del proyecto:
+## 4- Ahora vamos a ir a PHPMyAdmin para importar la base de datos. El archivo SQL del cual se puede importar se encuentra dentro del proyecto:
 
 ![Revisar database](imagenes_readme/database_view.png)
 
@@ -36,14 +36,14 @@ docker ps
 
 ![Data base importada](imagenes_readme/tablas_importadas.png)
 
-5- Ahora ya con todo funcional vamos a dirigirnos a la URL donde se encuentra hosteado el proyecto 
+## 5- Ahora ya con todo funcional vamos a dirigirnos a la URL donde se encuentra hosteado el proyecto 
 
 http://localhost:8000 -> Ubicacion del contenedor de apache y donde se encuentra alojado el proyecto como tal
 http://localhost:8081/index.php -> Ubicacion del contenedor que tiene el PHPMyAdmin en caso de querer administrar la base de datos de forma mas visual
 
 ![Aplicacion Hosteada](imagenes_readme/aplicacion_hosteada.png)
 
-🛠 Requisitos Previos
+# 🛠 Requisitos Previos
 Docker y Docker Compose instalados.
 
 Puerto 8000 libre (para Apache/PHP) y 8081 (para PHPMyAdmin).
