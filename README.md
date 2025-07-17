@@ -11,7 +11,7 @@ git add .
 git remote add origin https://github.com/axelporras1010/practica_dockerizacion.git
 git pull origin main 
 
-![Pull ejemplo](https://imgur.com/a/sbrQGBG)
+![Pull ejemplo](imagenes_readme/git_first.png)
 
 2 - Entrar a la carpeta de docker para comenzar el proceso de levantamiento de los contendores y consecuentemente hacer el levantamiento con: docker-compose up -d --build
 cd docker
