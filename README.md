@@ -26,7 +26,7 @@ docker-compose up -d --build
 3 - Revisar los contenedores 
 docker ps
 
-![Revisar contenedores](imagenes_readme/revisar_contenedores.png)
+![Revisar contenedores](imagenes_readme/revisar_contendores.png)
 
 4- Ahora vamos a ir a PHPMyAdmin para importar la base de datos. El archivo SQL del cual se puede importar se encuentra dentro del proyecto:
 
