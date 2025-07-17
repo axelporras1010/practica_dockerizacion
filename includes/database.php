@@ -1,9 +1,9 @@
 <?php
 $db = mysqli_connect(
-    $_ENV['DB_HOST'] ?? '',
-    $_ENV['DB_USER'] ?? '', 
-    $_ENV['DB_PASS'] ?? '', 
-    $_ENV['DB_NAME'] ?? ''
+    'db',    // Nombre del servicio en docker-compose.yml
+    'devuser', // Usuario MySQL
+    '2020',    // Contraseña
+    'devwebcamp' // Base de datos
 );
 
 if (!$db) {

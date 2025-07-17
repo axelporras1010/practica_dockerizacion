@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: devwebcamp-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devwebcamp
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: 2020
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      devwebcamp-net:
+        aliases:
+          - database  # Alias adicional para el servicio
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/php/Dockerfile
+    container_name: devwebcamp-web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:80"
+    volumes:
+      - ../:/var/www/html
+      - /var/www/html/vendor
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      - DB_HOST=db
+      - DB_USER=devuser
+      - DB_PASSWORD=2020
+      - DB_NAME=devwebcamp
+    networks:
+      - devwebcamp-net
+    links:
+      - db  # Garantiza la resolución del nombre
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: devwebcamp-pma
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 128M
+    ports:
+      - "8081:80"
+    networks:
+      - devwebcamp-net
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  devwebcamp-net:
+    driver: bridge
+    name: devwebcamp-net  # Nombre explícito para la red

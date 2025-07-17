@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 use Dotenv\Dotenv;
 use Model\ActiveRecord;
 require __DIR__ . '/../vendor/autoload.php';
