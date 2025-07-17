@@ -17,27 +17,27 @@ git pull origin main
 cd docker
 docker-compose up -d --build
 
-![Docker up](https://imgur.com/a/hNrl2PI)
+![Docker up](imagenes_readme/docker_up.png)
 
 3 - Revisar los contenedores 
 docker ps
 
-![Revisar contenedores](https://imgur.com/a/HMfRWKY)
+![Revisar contenedores](imagenes_readme/revisar_contenedores.png)
 
 4- Ahora vamos a ir a PHPMyAdmin para importar la base de datos. El archivo SQL del cual se puede importar se encuentra dentro del proyecto:
 
-![Revisar database](https://imgur.com/a/ABqT1bg)
+![Revisar database](imagenes_readme/database_view.png)
 
-![Importar database](https://imgur.com/a/jLywvRL)
+![Importar database](imagenes_readme/importar_database.png)
 
-![Data base importada](https://imgur.com/a/1GvZR1b)
+![Data base importada](imagenes_readme/tablas_importadas.png)
 
 5- Ahora ya con todo funcional vamos a dirigirnos a la URL donde se encuentra hosteado el proyecto 
 
 http://localhost:8000 -> Ubicacion del contenedor de apache y donde se encuentra alojado el proyecto como tal
 http://localhost:8081/index.php -> Ubicacion del contenedor que tiene el PHPMyAdmin en caso de querer administrar la base de datos de forma mas visual
 
-![Aplicacion Hosteada](https://imgur.com/a/lHE0fIn)
+![Aplicacion Hosteada](imagenes_readme/aplicacion_hosteada.png)
 
 🛠 Requisitos Previos
 Docker y Docker Compose instalados.
