@@ -6,9 +6,13 @@ Todas las dependencias se encuentran dentro del docker.compose.yaml para poder r
 Pasos a seguir para poder probar la aplicación web:
 
 1 - Usar este repositorio publico de git y hacer un pull al mismo para obtener todos los archivos y sus configuraciones: 
+
 git init 
+
 git add . 
+
 git remote add origin https://github.com/axelporras1010/practica_dockerizacion.git 
+
 git pull origin main  
 
 ![Pull ejemplo](imagenes_readme/git_first.png)
