@@ -6,7 +6,19 @@
 -- Limpieza: Se eliminaron comandos LOCK/UNLOCK, ALTER TABLE DISABLE/ENABLE KEYS, y se unificó CHARSET a utf8mb4.
 -- Se corrigieron caracteres mal codificados en los datos.
 
+-- Elimina primero las tablas hijas (dependientes), luego las principales
+
+DROP TABLE IF EXISTS `eventos_registros`;
+DROP TABLE IF EXISTS `eventos`;
+DROP TABLE IF EXISTS `registros`;
+DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `regalos`;
+DROP TABLE IF EXISTS `paquetes`;
+DROP TABLE IF EXISTS `horas`;
+DROP TABLE IF EXISTS `dias`;
 DROP TABLE IF EXISTS `categorias`;
+DROP TABLE IF EXISTS `ponentes`;
+
 CREATE TABLE `categorias` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
@@ -15,7 +27,6 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` VALUES (1,'Conferencias'),(2,'Workshops');
 
-DROP TABLE IF EXISTS `dias`;
 CREATE TABLE `dias` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(15) DEFAULT NULL,
@@ -24,7 +35,6 @@ CREATE TABLE `dias` (
 
 INSERT INTO `dias` VALUES (1,'Viernes'),(2,'Sabado');
 
-DROP TABLE IF EXISTS `horas`;
 CREATE TABLE `horas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `hora` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -33,7 +43,6 @@ CREATE TABLE `horas` (
 
 INSERT INTO `horas` VALUES (1,'10:00 - 10:55'),(2,'11:00 - 11:55'),(3,'12:00 - 12:55'),(4,'13:00 - 13:55'),(5,'16:00 - 16:55'),(6,'17:00 - 17:55'),(7,'18:00 - 18:55'),(8,'19:00 - 19:55');
 
-DROP TABLE IF EXISTS `paquetes`;
 CREATE TABLE `paquetes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) DEFAULT NULL,
@@ -42,7 +51,6 @@ CREATE TABLE `paquetes` (
 
 INSERT INTO `paquetes` VALUES (1,'Presencial'),(2,'Virtual'),(3,'Gratis');
 
-DROP TABLE IF EXISTS `ponentes`;
 CREATE TABLE `ponentes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) DEFAULT NULL,
@@ -70,7 +78,6 @@ INSERT INTO `ponentes` VALUES
 
 -- El resto de los INSERT se pueden copiar igual, corrigiendo los caracteres si es necesario.
 
-DROP TABLE IF EXISTS `regalos`;
 CREATE TABLE `regalos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
@@ -79,7 +86,6 @@ CREATE TABLE `regalos` (
 
 INSERT INTO `regalos` VALUES (1,'Paquete Stickers'),(2,'Camisa Mujer - Chica'),(3,'Camisa Mujer - Mediana'),(4,'Camisa Mujer - Grande'),(5,'Camisa Mujer - XL'),(6,'Camisa Hombre - Chica'),(7,'Camisa Hombre - Mediana'),(8,'Camisa Hombre - Grande'),(9,'Camisa Hombre - XL');
 
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) DEFAULT NULL,
@@ -94,7 +100,6 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` VALUES (10,'Axel','Porras','admin@admin.com','$2y$10$X4zJpMUWl0iWm0IRslDYCuRCDst6YyL6CSjGudaqRkZN6JoW5ZvA2',1,'66d28d1eef7ae',1),(11,'Carlo','Diaz','carlo@carlo.com','$2y$10$a68TBDdEuRMQ4tuhPCY41OdxiARIa/B9OkbRS0tRZTbulfLxyIV4W',1,'',0),(12,'Juan','De la Torre','correo@correo.com','$2y$10$d..TeFAZ1RSCNSjQD2MUN.cPs7JHfAW7BEikwK7biCRghSGZTdW4u',1,'',0),(13,'Maria','Valero','gratis@gratis.com','$2y$10$t18YU69LcHjhI6k5ApLBOuo8i42cVojuOQE1zepohRl/Q2c7R8KSC',1,'',0);
 
-DROP TABLE IF EXISTS `registros`;
 CREATE TABLE `registros` (
   `id` int NOT NULL AUTO_INCREMENT,
   `paquete_id` int DEFAULT NULL,
@@ -113,7 +118,6 @@ CREATE TABLE `registros` (
 
 INSERT INTO `registros` VALUES (1,1,'3P840426RE2785703','b70dce6b',11,9),(5,3,'','9949366a',13,1),(6,2,'7FJ644891V300813L','7ba32c26',12,1),(7,1,'3P840426RE2785703','b70dce6b',11,9),(8,1,'3P840426RE2785703','b70dce6b',11,2),(9,1,'3P840426RE2785703','b70dce6b',11,2),(10,1,'3P840426RE2785703','b70dce6b',11,3);
 
-DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE `eventos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -173,8 +177,6 @@ INSERT INTO `eventos` VALUES
 
 -- El resto de los INSERT se pueden copiar igual, corrigiendo los caracteres si es necesario.
 
-
-DROP TABLE IF EXISTS `eventos_registros`;
 CREATE TABLE `eventos_registros` (
   `id` int NOT NULL AUTO_INCREMENT,
   `evento_id` int DEFAULT NULL,
